@@ -7,6 +7,8 @@ import { clerkWebhooks } from './controllers/webhooks.js'
 import dotenv from 'dotenv';
 import companyRoutes from './routes/companyRoutes.js';
 import connectCloudinary from './config/cloudinary.js';
+import jobRoutes from './routes/jobRoutes.js';
+
 
 // Load env variables
 dotenv.config();
@@ -26,14 +28,16 @@ app.use(express.json());
 app.get('/', (req, res) => {
   res.send('API Working');
 });
+
 app.get("/debug-sentry", function mainHandler(req, res) {
   throw new Error("My first Sentry error!");
 });
 app.post('/webhooks',clerkWebhooks)
-app.use('/api/company',companyRoutes)
+app.use('/api/company',companyRoutes);
+app.use('/api/jobs',jobRoutes)
 
 //port
-const PORT = process.env.PORT || 6284;
+const PORT = process.env.PORT || 5678;
 
 Sentry.setupExpressErrorHandler(app);
 

@@ -7,6 +7,6 @@ const companySchema = new mongoose.Schema({
     image: {type: String, required: true},
 });
 
-const Company = mongoose.model("Company", companySchema);
+const Company = mongoose.model('Company', companySchema);
 
 export default Company;
