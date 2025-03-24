@@ -7,6 +7,9 @@ import { createContext, useEffect, useState } from "react";
 export const AppContext = createContext();
 
 export const AppContextProvider = (props) => {
+
+    const backendUrl = import.meta.env.VITE_BACKEND_URL
+
   const [searchFilter, setSearchFilter] = useState({
     title: "",
     location: "",
@@ -16,6 +19,9 @@ export const AppContextProvider = (props) => {
   const [jobs, setJobs] = useState([]);
 
   const[showRecruiterLogin, setShowRecruiterLogin] = useState(false)
+
+  const [companyToken, setCompanyToken] = useState(null)
+  const [companyData, setCompanyData] = useState(null)
 
   //function to fetch jobs
   const fetchJobs = async () =>{
@@ -28,14 +34,13 @@ export const AppContextProvider = (props) => {
   },[]);
 
   const value = {
-    searchFilter,
-    setSearchFilter,
-    isSearched,
-    setIsSearched,
-    jobs,
-    setJobs,
-    showRecruiterLogin,
-    setShowRecruiterLogin,
+    searchFilter, setSearchFilter,
+    isSearched, setIsSearched,
+    jobs, setJobs,
+    showRecruiterLogin,  setShowRecruiterLogin,
+    companyToken, setCompanyToken,
+    companyData, setCompanyData,
+    backendUrl
     // Add other state variables and methods here if needed.  For example:
   }; // Define the value variable
   return (

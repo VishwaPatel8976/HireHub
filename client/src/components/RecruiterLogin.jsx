@@ -1,7 +1,12 @@
 import { useState, useContext,useEffect } from "react";
 import { AppContext } from "../context/AppContext";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const RecruiterLogin = () => {
+   
+   const navigate = useNavigate();
+
   const [state, setState] = useState("Login");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -9,12 +14,31 @@ const RecruiterLogin = () => {
   const [image, setImage] = useState(false);
 
   const [isTextDataSubmited, setIsTextDataSubmited] = useState(false);
- const{setShowRecruiterLogin} = useContext(AppContext)
+ const{setShowRecruiterLogin, backendUrl, setCompanyToken, setCompanyData } = useContext(AppContext)
   const onSubmitHandler = async (e) =>{
     e.preventDefault()
     
-    if(state == 'Sign Up' && !isTextDataSubmited){  
+    if(state == "Sign Up" && !isTextDataSubmited){  
           setIsTextDataSubmited(true)
+        }
+
+        try {
+
+          if(state === "Login"){
+            const {data} = await axios.post(backendUrl + '/api/company/login',{email,password})
+
+            if(data.success){
+              console.log(data);
+              setCompanyData(data.company)
+              setCompanyToken(data.token)
+              localStorage.setItem("companyToken",data.token)
+              setShowRecruiterLogin(false)
+              navigate('/dashboard')
+          }
+        }
+      }
+        catch(error){
+          console.log(error);
         }
   };
 
