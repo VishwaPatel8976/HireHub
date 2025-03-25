@@ -1,9 +1,13 @@
+import { useContext } from "react";
 import { NavLink, Outlet, useNavigate } from "react-router-dom";
+import { AppContext } from "../context/AppContext";
 
 
  const Dashboard = () => {
 
    const navigate = useNavigate()
+
+   const { companyData } = useContext(AppContext)
 
   return (
     <div className="min-h-screen">
@@ -11,10 +15,13 @@ import { NavLink, Outlet, useNavigate } from "react-router-dom";
      <div className="logo-container bg-blue-900 w-screen h-25 px-6 flex items-center justify-between  ">
         <div className="flex items-center justify-between w-full pr-4">
             <img onClick={() => navigate("/")} className="logo w-80 h-80 bg-transparent md:static cursor-pointer " src="/src/assets/Logo.png" alt="" />
+       
+         { companyData && (
+
         <div className="flex gap-5 items-center text-xl text-white  ">
-        <p className="max-sm:hidden">Welcome , HireHub</p>
+        <p className="max-sm:hidden">Welcome ,{companyData.name}</p>
         <div className="relative group"> 
-         <img className="w-10 h-10 rounded " src="/src/assets/company_icon.svg" alt="" />
+         <img className="w-10 h-10 rounded-full " src={companyData.image} alt="" />
          <div className="absolute top-18 right-0  pt-5 px-7 text-black w-40 h-20 hidden group-hover:block bg-white shadow-lg rounded-lg">
             <ul className="list-none m-0 p-2 ">
                <li className="cursor-pointer  hover:bg-gray-100">Logout</li>
@@ -22,6 +29,9 @@ import { NavLink, Outlet, useNavigate } from "react-router-dom";
          </div>
         </div>
         </div>
+         )
+       }
+
         </div>
      </div>
 

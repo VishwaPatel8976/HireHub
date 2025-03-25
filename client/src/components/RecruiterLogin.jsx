@@ -2,6 +2,7 @@ import { useState, useContext,useEffect } from "react";
 import { AppContext } from "../context/AppContext";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const RecruiterLogin = () => {
    
@@ -19,8 +20,9 @@ const RecruiterLogin = () => {
     e.preventDefault()
     
     if(state == "Sign Up" && !isTextDataSubmited){  
-          setIsTextDataSubmited(true)
+        return setIsTextDataSubmited(true)
         }
+
 
         try {
 
@@ -28,17 +30,41 @@ const RecruiterLogin = () => {
             const {data} = await axios.post(backendUrl + '/api/company/login',{email,password})
 
             if(data.success){
-              console.log(data);
+              // console.log(data);
               setCompanyData(data.company)
               setCompanyToken(data.token)
-              localStorage.setItem("companyToken",data.token)
+              localStorage.setItem('companyToken',data.token)
               setShowRecruiterLogin(false)
               navigate('/dashboard')
           }
+          else{
+            toast.error(data.message)
+          }
+        }
+        else{
+            const formData = new FormData()
+            formData.append('name',name)
+            formData.append('email',email)
+            formData.append('password',password)
+            formData.append('image',image)
+
+            const {data} = await axios.post(backendUrl + '/api/company/register',formData)
+
+            if(data.success){
+              // console.log(data);
+              setCompanyData(data.company)
+              setCompanyToken(data.token)
+              localStorage.setItem('companyToken',data.token)
+              setShowRecruiterLogin(false)
+              navigate('/dashboard')
+
+        }  else{
+          toast.error(data.message)
+        }
         }
       }
-        catch(error){
-          console.log(error);
+        catch (error){
+          toast.error(error.message)
         }
   };
 

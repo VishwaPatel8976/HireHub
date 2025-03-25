@@ -60,7 +60,7 @@ export const loginCompany = async (req,res) => {
     const {email, password} = req.body;
     try {
         const company = await Company.findOne({ email })
-        if(bcrypt.compare(password,company.password)){
+        if (await bcrypt.compare(password,company.password)){
             res.json({
                 success: true,
                 company :{
@@ -154,11 +154,13 @@ export const changeVisibility = async (req,res) => {
         const job = await Job.findById(id)
 
         if(companyId.toString() === job.companyId.toString()){
+
             job.visible = !job.visible;
         }
         await job.save()
 
         res.json({success:true, job})
+
     } catch (error) {
       res.json({success:false, message:error.message})   
     }
