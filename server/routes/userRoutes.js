@@ -3,7 +3,6 @@ import { applyForJob, getUserData, getUserJobApplications, updateUserResume } fr
 import upload from "../config/multer.js";
 
 const router = express.Router();
-
 //Get user Data
 router.get('/user',getUserData);
 

@@ -7,7 +7,6 @@ const JobApplicationSchema = new mongoose.Schema({
     jobId: {type : mongoose.Schema.Types.ObjectId, ref: 'Job', required: true},
      status:{ type: String, default:'pending' },
      date: {type: Number, required: true}
-
 });
 
 const JobApplication = mongoose.model('JobApplication',  JobApplicationSchema);

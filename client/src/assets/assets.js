@@ -83,22 +83,12 @@ export const JobCategories = [
     "Software",
     "cloud Computing",  
     "Artificial Intelligence",
-    "Quantitative Finance",
-    "Operations Management",
     "Product Management",
-    "Engineering Management",
-    "Finance",
-    "Human Resources",
     "Customer Support",
     "Project Management",
     "Quality Assurance",
     "Business Development",
-    "Sales",
     "Customer Service",
-    "Supply Chain Management",
-    "Supply Chain Coordination",
-    "Quality Control",
-    "Quality Assurance Management",
     "Business Analysis",
     "Business Intelligence",
     "UI/UX Design", 
@@ -106,12 +96,18 @@ export const JobCategories = [
 
 export const JobLocations = [
     "Bangalore",
-    "Washington",
     "Hyderabad",
     "Mumbai",
-    "California",
     "Chennai",
-    "New York"
+    "Ahmedabad",
+    "Delhi",
+    "Pune",
+    "Kolkata",
+    "Panjab",
+    "Chandigarh",
+    "Rajkot",
+    "Rajasthan",
+    
 ]
 
 // Sample data for Manage Jobs Page

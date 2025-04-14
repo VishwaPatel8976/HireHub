@@ -22,13 +22,10 @@ const RecruiterLogin = () => {
     if(state == "Sign Up" && !isTextDataSubmited){  
         return setIsTextDataSubmited(true)
         }
-
-
         try {
 
           if(state === "Login"){
             const {data} = await axios.post(backendUrl + '/api/company/login',{email,password})
-
             if(data.success){
               // console.log(data);
               setCompanyData(data.company)
@@ -91,7 +88,8 @@ const RecruiterLogin = () => {
           <>
           <div className="my-10 flex items-center gap-4">
             <label htmlFor="image">
-              <img className="w-18 rounded-full" src= {image ? URL.createObjectURL(image) :  "/src/assets/upload_area.svg"} alt="logo" />
+              <img className="w-16 rounded" src= {image ? URL.createObjectURL(image) :  "/src/assets/upload_area.svg"}
+               alt="logo" />
               <input onChange={(e) => setImage(e.target.files[0])} type="file" id="image" hidden />
             </label>
             <p>upload company <br /> logo</p>
@@ -179,7 +177,8 @@ const RecruiterLogin = () => {
             </span>
           </p>
         )}
-        <img onClick={() => setShowRecruiterLogin(false)} className="absolute top-6 right-8 cursor-pointer h-3 brightness-60 hover:brightness-100 hover:text-blue-900 " src="/src/assets/cross_icon.svg" alt="" />
+        <img onClick={() => setShowRecruiterLogin(false)} className="absolute top-6 right-8 cursor-pointer h-3 
+        brightness-60 hover:brightness-100 hover:text-blue-900 " src="/src/assets/cross_icon.svg" alt="" />
       </form>
     </div>
   );
