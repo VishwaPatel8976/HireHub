@@ -113,10 +113,8 @@ export const postJob = async (req,res) => {
 }   
 //Get company job Applicants
 export const getCompanyJobApplicants = async (req,res) => {
-
      try {
         const companyId = req.company._id
-
         //find job applications for the user and populate related data
         const applications = await JobApplication.find({companyId})
         .populate('userId','name image resume')

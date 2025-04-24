@@ -31,26 +31,36 @@ const JobListing = () => {
   };
 
   useEffect(() => {
-    const matchesQuery = (job) => {
-      const query = searchFilter?.query?.toLowerCase() || ""; // Ensure query is always a string
-      return (
-        query === "" ||
-        job.title.toLowerCase().includes(query) ||
-        job.category.toLowerCase().includes(query) ||
-        job.location.toLowerCase().includes(query) ||
-        job.level.toLowerCase().includes(query) ||
-        job.companyId?.name.toLowerCase().includes(query)
-      );
-    };
+    const matchesCategory = (job) =>
+      selectedCategories.length === 0 ||
+      selectedCategories.includes(job.category) ||
+      (searchFilter.category && job.category.toLowerCase().includes(searchFilter.category.toLowerCase()));
+
+    const matchesLocation = (job) =>
+      selectedLocations.length === 0 ||
+      selectedLocations.includes(job.location);
+
+    const matchesTitle = (job) =>
+      searchFilter.title === "" ||
+      job.title.toLowerCase().includes(searchFilter.title.toLowerCase());
+
+    const matchesSearchLocation = (job) =>
+      searchFilter.location === "" ||
+      job.location.toLowerCase().includes(searchFilter.location.toLowerCase());
 
     const newFilteredJobs = jobs
       .slice()
       .reverse()
-      .filter(matchesQuery);
-
+      .filter(
+        (job) =>
+          matchesCategory(job) &&
+          matchesLocation(job) &&
+          matchesTitle(job) &&
+          matchesSearchLocation(job)
+      );
     setFilteredJobs(newFilteredJobs);
     setCurrentPage(1);
-  }, [jobs, searchFilter]);
+  }, [jobs, selectedCategories, selectedLocations, searchFilter]);
 
   return (
     <div className="sidebarContainer 2xl:px-20 mx-auto flex flex-col lg:flex-row max-lg:space-y-8 py-8 ">
@@ -59,16 +69,16 @@ const JobListing = () => {
       <div className="w-full lg:w-1/4  rounded-2xl shadow-xl px-4 ">
         {/* search filter from hero component */}
         {isSearched &&
-          (searchFilter.title !== "" || searchFilter.location !== "") && (
+          (searchFilter.title !== "" || searchFilter.location !== "" || searchFilter.category !== "") && (
             <>
               <h3 className="font-medium text-lg mb-4">current search</h3>
               <div className="mb-4 text-gray-600">
-                {searchFilter.title && (
+                {(searchFilter.title || searchFilter.category) && (
                   <span className="inline-flex items-center gap-3 bg-blue-100 px-4 py-2 rounded ">
-                    {searchFilter.title || searchFilter.location}
+                    {searchFilter.title || searchFilter.location || searchFilter.category}
                     <img
                       onClick={() =>
-                        setSearchFilter((prev) => ({ ...prev, title: "" }))
+                        setSearchFilter((prev) => ({ ...prev, title: "", category: "" }))
                       }
                       className="cursor-pointer"
                       src="src\assets\cross_icon.svg"

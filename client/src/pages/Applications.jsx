@@ -18,30 +18,24 @@ const Applications = () => {
   const { backendUrl, userData, userApplications, fetchUserData, fetchUserApplications } = useContext(AppContext)
 
   const updateResume = async () => {
-
     try {
-
       const formData = new FormData()
       formData.append('resume',resume)
 
       const token = await getToken()
-
       const { data } = await axios.post(backendUrl+'/api/users/update-resume',
         formData,
         {headers:{Authorization : `Bearer ${token}`}}
       )
-
       if (data.success) {
         toast.success(data.message)
         await fetchUserData()
       } else {
         toast.error(data.message)
-      }
-      
+      }      
     } catch (error) {
       toast.error(error.message)
     }
-
     setIsEdit(false)
     setResume(null)
 

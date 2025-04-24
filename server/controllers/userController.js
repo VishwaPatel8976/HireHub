@@ -3,7 +3,6 @@ import Job from "../models/Job.js";
 import JobApplication from "../models/JobApplication.js";
 import User from "../models/User.js";
 import { v2 as cloudinary } from "cloudinary";
-
 //Get user data
 export const getUserData = async (req,res) => {
     const userId = req.auth.userId;
@@ -14,13 +13,9 @@ export const getUserData = async (req,res) => {
               return res.json({success:false, message:"User not found"})
           }
           res.json({success:true, user})
-    } catch (error) {
-        
+    } catch (error) {        
          res.json({success:false, message: error.message})
-    }
-
-}
-
+    }}
 //Apply for a job
 export const applyForJob = async (req,res) => {
    const { jobId } = req.body;
