@@ -1,4 +1,3 @@
-
 import moment from "moment"
 import { useContext, useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
@@ -69,30 +68,30 @@ const ManageJobs = () => {
       <p className="text-xl font-medium sm:text-2xl text-[#0d47a1]">No Jobs Available or posted</p>
      </div>
      ) :(
-    <div className="container mx-auto p-6">
+    <div className="container mx-auto p-6 bg-gradient-to-br from-blue-50 via-white to-amber-50 rounded-2xl shadow-lg">
       <div className="overflow-x-auto">
-        <table className="w-full max-w-4xl border-2 rounded-full  border-gray-200 max-sm:text-sm">
-          <thead className="bg-[#0d47a1] text-white">
+        <table className="w-full max-w-4xl border-2 rounded-lg border-gray-200 bg-white/80 backdrop-blur-md">
+          <thead className="bg-gradient-to-r from-blue-500 to-blue-700 text-white">
             <tr>
               <th className="py-3 px-4 text-left max-sm:hidden">#</th>
               <th className="py-3 px-4 text-left">Job Title</th>
               <th className="py-3 px-4 text-left max-sm:hidden">Date</th>
               <th className="py-3 px-4 text-left max-sm:hidden">Location</th>
-              <th className="py-3 px-4 text-center ">Applicants</th>
+              <th className="py-3 px-4 text-center">Applicants</th>
               <th className="py-3 px-4 text-left">Visible</th>
             </tr>
          </thead>
           <tbody>
             {jobs && jobs.map((job, index) => (
-              <tr key={index} className="text-gray-800">
-                <td className="py-2 px-4 border-b border-gray-300 max-sm:hidden ">{index + 1}</td>
-                <td className="py-2 px-4 border-b border-gray-300 ">{job.title}</td>
-                <td className="py-2 px-4 border-b max-sm:hidden border-gray-300  ">{moment(job.date).format("ll")}</td>
-                <td className="py-2 px-4 border-b max-sm:hidden border-gray-300 ">{job.location}</td>
-                <td className="py-2 px-4 border-b text-center border-gray-300  ">{job.applicants}</td>
-                <td className="py-2 px-4 border-b border-gray-300 ">
-                  <input onChange={(()=> changeJobVisibility(job._id))} className="w-5 h-5 ml-4 " type="checkbox" 
-                  checked={job.visible}  />
+              <tr key={index} className="text-gray-800 hover:bg-blue-50/60 transition-colors duration-150">
+                <td className="py-2 px-4 border-b border-gray-300 max-sm:hidden">{index + 1}</td>
+                <td className="py-2 px-4 border-b border-gray-300 font-semibold text-blue-900">{job.title}</td>
+                <td className="py-2 px-4 border-b max-sm:hidden border-gray-300 text-gray-700">{moment(job.date).format("ll")}</td>
+                <td className="py-2 px-4 border-b max-sm:hidden border-gray-300 text-gray-700">{job.location}</td>
+                <td className="py-2 px-4 border-b text-center border-gray-300 text-gray-700">{job.applicants}</td>
+                <td className="py-2 px-4 border-b border-gray-300">
+                  <input onChange={(()=> changeJobVisibility(job._id))} className="w-5 h-5 ml-4" type="checkbox" 
+                  checked={job.visible} />
                 </td>
               </tr>
             ))}
@@ -101,7 +100,7 @@ const ManageJobs = () => {
       </div>
 
       <div className="flex justify-start">
-        <button onClick={() => navigate("/dashboard/add-job")} className="bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 shadow-lg text-white  hover:bg-gradient-to-br  px-4 py-2 rounded mt-5 ">
+        <button onClick={() => navigate("/dashboard/add-job")} className="bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 shadow-lg text-white hover:bg-gradient-to-br px-4 py-2 rounded-full mt-5 font-bold hover:scale-105 transition-all duration-200">
           Add new job
         </button>
       </div>

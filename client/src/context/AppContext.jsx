@@ -1,4 +1,3 @@
-
 import PropTypes from "prop-types";
 
 import { createContext, useEffect, useState } from "react";
@@ -15,8 +14,10 @@ export const AppContextProvider = (props) => {
     const { getToken} = useAuth() 
 
   const [searchFilter, setSearchFilter] = useState({
-    title: "",
+    query: "",
+    category: "",
     location: "",
+    sortOrder: "asc"
   });
   const [isSearched, setIsSearched] = useState(false)
 

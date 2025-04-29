@@ -48,59 +48,57 @@ const AddJob = () => {
   }, []);
 
   return (
-   <form onSubmit={onSubmitHandler} className='container p-5 flex flex-col w-full items-start gap-4'>
-
-     <div className='w-full'>
-      <p className='mb-2'>Job Title</p>
+   <form onSubmit={onSubmitHandler} className="container p-8 flex flex-col w-full items-start gap-6 bg-white/80 rounded-2xl shadow-2xl max-w-3xl mx-auto mt-10 backdrop-blur-md border border-blue-100">
+     <h2 className="text-3xl font-extrabold text-blue-900 mb-4 tracking-tight flex items-center gap-2">
+       <svg className="w-8 h-8 text-amber-400" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M16 7a4 4 0 01.88 7.9M12 3v1m0 16v1m8.66-13.66l-.7.7M4.34 19.66l-.7.7M21 12h-1M4 12H3m16.66 7.66l-.7-.7M4.34 4.34l-.7-.7" /></svg>
+       Add a New Job
+     </h2>
+     <div className="w-full">
+      <p className="mb-2 font-semibold text-blue-900">Job Title</p>
       <input type="text" placeholder="Type here" 
       onChange={(e) => setTitle(e.target.value)} value={title} required 
-      className='w-full max-w-lg px-3 py-2 border-2 border-gray-300 rounded outline-none'/>
+      className="w-full max-w-lg px-4 py-2 border-2 border-blue-200 rounded-lg outline-none focus:ring-2 focus:ring-blue-400 shadow-sm transition-all duration-200"/>
       </div>
-
-     <div className='w-full max-w-lg'>
-      <p>Job Description</p>
-      <div ref={editorRef} >
-
-      </div>
+     <div className="w-full max-w-lg">
+      <p className="font-semibold text-blue-900">Job Description</p>
+      <div ref={editorRef} className="rounded-lg border-2 border-blue-100 bg-white/90 min-h-[120px] shadow-inner" />
      </div>
-
-     <div className='flex flex-col sm:flex-row w-full gap-3 sm:gap-15'>
-     <div>
-  <label htmlFor="job-category" className="mb-2 block">Job Category</label>
-  <input
-    type="text"
-    id="job-category"
-    list="job-category-list"
-    className="w-full px-3 py-2 border-2 border-gray-200 rounded outline-none hover:border-gray-300"
-    onChange={(e) => setCategory(e.target.value)}
-    placeholder="Type a job category..."
-  />
-  <datalist id="job-category-list">
-    {JobCategories.map((category) => (
-      <option key={category} value={category} />
-    ))}
-  </datalist>
-</div>
-
+     <div className="flex flex-col sm:flex-row w-full gap-3 sm:gap-8">
       <div>
-  <label htmlFor="job-location" className="mb-2 block">Job Location</label>
-  <input
-    type="text"
-    id="job-location"
-    list="job-location-list"
-    className="w-full px-3 py-2 border-2 border-gray-200 rounded outline-none hover:border-gray-300"
-    onChange={(e) => setLocation(e.target.value)}
-    placeholder="Type a location..."
-  />
-  <datalist id="job-location-list">
-    {JobLocations.map((location) => (
-      <option key={location} value={location} />
-    ))}
-  </datalist>
-</div>
-        <div>
-        <p className='mb-2'>Job Level</p>
-        <select className='w-full px-3 py-2 border-2 border-gray-200 rounded outline-none hover:border-gray-300 '
+        <label htmlFor="job-category" className="mb-2 block font-semibold text-blue-900">Job Category</label>
+        <input
+          type="text"
+          id="job-category"
+          list="job-category-list"
+          className="w-full px-4 py-2 border-2 border-blue-100 rounded-lg outline-none focus:ring-2 focus:ring-blue-400 shadow-sm transition-all duration-200"
+          onChange={(e) => setCategory(e.target.value)}
+          placeholder="Type a job category..."
+        />
+        <datalist id="job-category-list">
+          {JobCategories.map((category) => (
+            <option key={category} value={category} />
+          ))}
+        </datalist>
+      </div>
+      <div>
+        <label htmlFor="job-location" className="mb-2 block font-semibold text-blue-900">Job Location</label>
+        <input
+          type="text"
+          id="job-location"
+          list="job-location-list"
+          className="w-full px-4 py-2 border-2 border-blue-100 rounded-lg outline-none focus:ring-2 focus:ring-blue-400 shadow-sm transition-all duration-200"
+          onChange={(e) => setLocation(e.target.value)}
+          placeholder="Type a location..."
+        />
+        <datalist id="job-location-list">
+          {JobLocations.map((location) => (
+            <option key={location} value={location} />
+          ))}
+        </datalist>
+      </div>
+      <div>
+        <p className="mb-2 font-semibold text-blue-900">Job Level</p>
+        <select className="w-full px-4 py-2 border-2 border-blue-100 rounded-lg outline-none focus:ring-2 focus:ring-blue-400 shadow-sm transition-all duration-200"
         onChange={(e) => setLevel(e.target.value)}>
           <option value="Beginner level">Beginner level</option>
           <option value="Intermediate level">Intermediate level</option>
@@ -108,12 +106,11 @@ const AddJob = () => {
         </select>
       </div>
      </div>
-     <div>
-       <p className='mb-2'>Job Salary</p>
-       <input min={0} className='w-full px-3 py-2 border-2 border-gray-200 rounded outline-none hover:border-gray-300 sm:w-[50 %] ' onChange={(e) => setSalary(e.target.value )} type="Number" placeholder='2500' />
+     <div className="w-full max-w-xs">
+       <p className="mb-2 font-semibold text-blue-900">Job Salary</p>
+       <input min={0} className="w-full px-4 py-2 border-2 border-blue-100 rounded-lg outline-none focus:ring-2 focus:ring-blue-400 shadow-sm transition-all duration-200" onChange={(e) => setSalary(e.target.value )} type="Number" placeholder="2500" />
      </div>
-      <button className='w-25 py-3 bg-amber-500 text-white rounded-sm
-      hover:bg-amber-600' type="submit">ADD</button>
+      <button className="w-32 py-3 bg-gradient-to-r from-amber-400 to-yellow-500 text-blue-900 font-bold rounded-full shadow-lg hover:from-yellow-500 hover:to-amber-400 hover:scale-105 transition-all duration-200 mt-4" type="submit">ADD</button>
    </form>
   )
 }
