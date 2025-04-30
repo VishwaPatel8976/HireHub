@@ -15,12 +15,6 @@ const Dashboard = () => {
     navigate("/");
   };
 
-  useEffect(() => {
-    if (companyData) {
-      navigate("/dashboard/manage-jobs");
-    }
-  }, [companyData, navigate]);
-
   return (
     <div className="min-h-screen">
       {/* Navbar for Recruiter panel */}
