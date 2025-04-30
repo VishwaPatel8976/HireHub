@@ -1,6 +1,11 @@
 import { useContext, useEffect } from "react";
 import { NavLink, Outlet, useNavigate } from "react-router-dom";
 import { AppContext } from "../context/AppContext";
+// Import the SVG icons
+import addIcon from "../assets/add_icon.svg";
+import homeIcon from "../assets/home_icon.svg";
+import personTickIcon from "../assets/person_tick_icon.svg";
+import logo from "../assets/Logo.png";
 
 const Dashboard = () => {
   const navigate = useNavigate();
@@ -23,7 +28,7 @@ const Dashboard = () => {
           <img
             onClick={() => navigate("/")}
             className="logo w-40 h-40 bg-transparent md:static cursor-pointer transition-transform duration-200 hover:scale-105 drop-shadow-lg"
-            src="/src/assets/Logo.png"
+            src={logo}
             alt="HireHub Logo"
           />
           {companyData && (
@@ -64,7 +69,7 @@ const Dashboard = () => {
             >
               <img
                 className="w-6 h-6"
-                src="/src/assets/add_icon.svg"
+                src={addIcon}
                 alt="Add Job Icon"
               />
               <p className="max-sm:hidden font-semibold text-blue-900">Add Job</p>
@@ -79,7 +84,7 @@ const Dashboard = () => {
             >
               <img
                 className="w-6 h-6"
-                src="/src/assets/home_icon.svg"
+                src={homeIcon}
                 alt="Manage Jobs Icon"
               />
               <p className="max-sm:hidden font-semibold text-blue-900">Manage Jobs</p>
@@ -94,7 +99,7 @@ const Dashboard = () => {
             >
               <img
                 className="w-6 h-6"
-                src="/src/assets/person_tick_icon.svg"
+                src={personTickIcon}
                 alt="View Applications Icon"
               />
               <p className="max-sm:hidden font-semibold text-blue-900">View Applications</p>
